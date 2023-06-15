@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     {{>headerlinks}}
+</head>
+
+<body>
+    {{>navbar}}
+    <!-- Main header  -->
+    <div class="container-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form  class="temp_form">
+                        <input type="text" id="cityName"  placeholder="Enter your city name" autocomplete="off">
+                        <input type="submit" value="search" id="submitBtn" >
+                    </form>
+                    <div class="tempInformation">
+                        <div class="top_layer">
+                            <p id="day">Thursday</p>
+                            <p id="today_data"></p>
+                        </div>
+                        <div class="main_layer">
+                            <p id="city_name">Get output here</p>
+                            <div class="middle_layer">
+                                <p id="temp"><span>0</span><sup>o</sup>C</p>
+                                <p id="temp_status"> <i class="fa fa-cloud" aria-hidden="true"></i> </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer code  -->
+    {{>footer}}
+    <script>
+        const day = document.getElementById('day');
+        const todayData = document.getElementById('today_data');
+        let dateTime = new Date();
+        const currentDay = () => {
+            const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            return weekdays[dateTime.getDay()];
+        };
+        day.innerText = currentDay();
+
+        const currentDateTime = () => {
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let month = monthNames[dateTime.getMonth()];
+            let date = dateTime.getDate();
+            let hour = dateTime.getHours();
+            let min = dateTime.getMinutes();
+            let period = "AM";
+            if (hour > 11) {
+                period = "PM";
+            }
+            if (hour > 12) {
+                hour = hour - 12;
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+            return `${month} ${date} | ${hour}:${min}${period}`;
+        };
+        todayData.innerText = `${currentDateTime()}`;
+
+    </script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
