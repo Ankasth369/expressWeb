@@ -1,3 +1,5 @@
+import apiKey from "./apikey";
+
 const cityName = document.getElementById('cityName');
 const submitBtn = document.getElementById('submitBtn');
 const city_name = document.getElementById('city_name');
@@ -13,7 +15,7 @@ const getInfo = async (event) => {
         // datahide.classList.add('data_hide');
     } else {
         try {
-            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=9e1901156772d514b432d2417011e902`;
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=${apiKey}`;
             const response = await fetch(url);
             const data = await response.json();
             const arrData = [data];
